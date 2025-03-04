@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Invoice List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            padding: 8px 12px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Invoice List</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer Name</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="invoice : ${invoices}">
+                <td th:text="${invoice.id}"></td>
+                <td th:text="${invoice.customerName}"></td>
+                <td th:text="${invoice.amount}"></td>
+                <td th:text="${invoice.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a href="/invoices/add">Add New Invoice</a>
+
+</body>
+</html>

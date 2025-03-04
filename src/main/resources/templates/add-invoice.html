@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        .btn-cancel {
+            background: #dc3545;
+        }
+
+        .btn-cancel:hover {
+            background: #c82333;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Add Invoice</h2>
+    <form th:action="@{/invoices/save}" method="post" th:object="${invoice}">
+        <label>Customer Name:</label>
+        <input type="text" th:field="*{customerName}" required>
+
+        <label>Amount:</label>
+        <input type="number" step="0.01" th:field="*{amount}" required>
+
+        <label>Status:</label>
+        <select th:field="*{status}">
+            <option value="Pending">Pending</option>
+            <option value="Paid">Paid</option>
+        </select>
+
+        <div class="btn-container">
+            <button type="submit">Save Invoice</button>
+            <a href="/invoices" class="btn-cancel" style="text-align: center; text-decoration: none; padding: 10px; color: white; width: 100%; border-radius: 5px; display: block;">Cancel</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
